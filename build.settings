@@ -5,7 +5,9 @@
 
 settings = 
 {
-
+	android= {
+		useGoogleServicesJson = true,
+	},
 	iphone =
 	{
 		plist =
