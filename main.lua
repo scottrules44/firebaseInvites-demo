@@ -29,7 +29,9 @@ showInvites = widget.newButton( {
     if (e.phase == "ended") then
       firebaseInvites.show("Come to my app", "cool app title", "CoronaTestApp", nil, nil, function ( ev )
         if (ev.isError == true) then
-          native.showAlert("Invites error", json.encode(ev), {"Ok"})
+          if (ev.error ~= "Canceled by User") then
+            native.showAlert("Invites error", json.encode(ev), {"Ok"})
+          end
         end
       end)
     end
