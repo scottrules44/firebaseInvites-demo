@@ -47,4 +47,17 @@ settings =
             publisherId = "tech.scotth",
         },
     },
+    android= {
+		useGoogleServicesJson = true,
+		intentFilters = {
+			{
+				actions = { "android.intent.action.VIEW" },
+				categories ={
+					"android.intent.category.DEFAULT",
+					"android.intent.category.BROWSABLE",
+				},
+				data = { scheme = "Insert deepLink name here" },
+			},
+		},
+	},
 }

@@ -4,10 +4,28 @@ googleSignIn.init()
 
 local firebaseInvites = require "plugin.firebaseInvites"
 firebaseInvites.init()
-
+local launchArgs = ...
+ 
+if launchArgs and launchArgs.url then
+  print("Data From Launch")
+  print("--------")
+  print(json.encode(launchArgs))
+  print("--------")
+end
+ 
+local function urlListener(event)
+  if event.type == "applicationOpen" and event.url then
+    print("Data From Open")
+    print("--------")
+    print(json.encode(launchArgs))
+    print("--------")
+  end
+end
+ 
+Runtime:addEventListener( "system", urlListener )
 local widget = require("widget")
-local androidClientID = "652763858765-hq7huph5a5to4m39gqsoo7cn0ih3bd3d.apps.googleusercontent.com"
-local clientID = "652763858765-ati8ar1t20ofebu4a39nhk7ea9oqmuu1.apps.googleusercontent.com" -- iOS deafult
+local androidClientID = ""
+local clientID = "" -- iOS deafult
 if (system.getInfo("platform") == "android") then
     clientID = androidClientID
 end
