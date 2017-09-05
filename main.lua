@@ -17,7 +17,7 @@ local function urlListener(event)
   if event.type == "applicationOpen" and event.url then
     print("Data From Open")
     print("--------")
-    print(json.encode(launchArgs))
+    print(json.encode(event))
     print("--------")
   end
 end
