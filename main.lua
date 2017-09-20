@@ -10,7 +10,27 @@ timer.performWithDelay( 5000, function ( e )
   end)
 end )
  
+<<<<<<< HEAD
 
+=======
+if launchArgs and launchArgs.url then
+  print("Data From Launch")
+  print("--------")
+  print(json.encode(launchArgs))
+  print("--------")
+end
+ 
+local function urlListener(event)
+  if event.type == "applicationOpen" and event.url then
+    print("Data From Open")
+    print("--------")
+    print(json.encode(event))
+    print("--------")
+  end
+end
+ 
+Runtime:addEventListener( "system", urlListener )
+>>>>>>> origin/master
 local widget = require("widget")
 local androidClientID = ""
 local clientID = "" -- iOS deafult
