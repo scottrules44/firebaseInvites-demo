@@ -56,7 +56,7 @@ settings =
 					"android.intent.category.DEFAULT",
 					"android.intent.category.BROWSABLE",
 				},
-				data = { scheme = "Insert deepLink name here" },
+				data = {scheme = "http", host = "scotth.tech" },
 			},
 		},
 	},

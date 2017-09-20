@@ -4,25 +4,13 @@ googleSignIn.init()
 
 local firebaseInvites = require "plugin.firebaseInvites"
 firebaseInvites.init()
-local launchArgs = ...
+timer.performWithDelay( 5000, function ( e )
+  firebaseInvites.getInvite(function ( e )
+    print(json.encode(e))
+  end)
+end )
  
-if launchArgs and launchArgs.url then
-  print("Data From Launch")
-  print("--------")
-  print(json.encode(launchArgs))
-  print("--------")
-end
- 
-local function urlListener(event)
-  if event.type == "applicationOpen" and event.url then
-    print("Data From Open")
-    print("--------")
-    print(json.encode(launchArgs))
-    print("--------")
-  end
-end
- 
-Runtime:addEventListener( "system", urlListener )
+
 local widget = require("widget")
 local androidClientID = ""
 local clientID = "" -- iOS deafult
@@ -45,7 +33,7 @@ showInvites = widget.newButton( {
   label = "Show Invites",
   onEvent = function ( e )
     if (e.phase == "ended") then
-      firebaseInvites.show("Come to my app", "cool app title", "CoronaTestApp", nil, nil, function ( ev )
+      firebaseInvites.show("Come to my app", "cool app title", "http://scotth.tech/helloThere", nil, nil, function ( ev )
         if (ev.isError == true) then
           if (ev.error ~= "Canceled by User") then
             native.showAlert("Invites error", json.encode(ev), {"Ok"})
